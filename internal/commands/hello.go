@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"os"
+	"os/exec"
 
 	"github.com/docker/cli/cli"
 	"github.com/docker/cli/cli/command"
@@ -15,7 +15,11 @@ func helloCmd(dockerCli command.Cli) *cobra.Command {
 		Short: "Print hello world!",
 		Args:  cli.ExactArgs(0),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Fprintln(os.Stdout, "Hello World!")
+			out, err := exec.Command("docker", "run", "--rm", "hello-world").Output()
+			if err != nil {
+				return err
+			}
+			fmt.Fprintln(dockerCli.Out(), string(out))
 			return nil
 		},
 	}
