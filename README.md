@@ -1,5 +1,7 @@
 # Docker Application
 
+
+
 A Docker CLI Plugin to configure, share and install applications:
 * Extend [Compose files](https://docs.docker.com/compose/compose-file/) with metadata and parameters
 * Re-use same application across multiple environments (Development/QA/Staging/Production)
